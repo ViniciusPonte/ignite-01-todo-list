@@ -1,20 +1,17 @@
-import { CheckCircle, Circle, Trash } from "phosphor-react";
+import { CheckCircle, Circle } from "phosphor-react";
 import { ITask } from "../../App";
-import { taskEnum } from "../../constants/enum";
-import { useTasks } from "../../hooks/useTasks";
 import { StyledTrash, Wrapper } from "./styles"
 
-export function Task({name, status, id}: ITask){
-    const {editTask, deleteTask} = useTasks();
+interface TaskProps extends ITask {
+    editTask: (id: string) => void;
+    deleteTask: (id: string) => void;
+}
 
+export function Task({name, status, id, deleteTask, editTask}: TaskProps){
     return (
         <Wrapper>
-            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer'}} onClick={() => editTask(id)}>
-                {status === taskEnum.done ? (
-                    <CheckCircle style={{marginRight: 8}}/>
-                ) : (
-                    <Circle style={{marginRight: 8}} />
-                )}
+            <div className="wrapper-task-name" onClick={() => editTask(id)}>
+                {status === 'done' ? <CheckCircle style={{marginRight: 8}}/> : <Circle style={{marginRight: 8}} /> }
                 <span>{name}</span>
             </div>
             <StyledTrash style={{cursor: 'pointer'}} onClick={() => deleteTask(id)}/> 

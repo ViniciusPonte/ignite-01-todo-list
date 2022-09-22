@@ -11,6 +11,13 @@ export const Wrapper = styled.div`
     background-color: var(--gray-500);
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.06);
     border-radius: 8px;
+
+    .wrapper-task-name {
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        cursor: pointer;
+    }
 `;
 
 export const StyledTrash = styled(Trash)`
